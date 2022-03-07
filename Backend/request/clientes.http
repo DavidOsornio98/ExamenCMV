@@ -1,0 +1,39 @@
+
+@api = http://localhost:4000/clientes
+
+
+GET {{api}}
+
+###
+
+POST {{api}}
+Content-Type: application/json
+
+{
+    "nombre": "Miguel",
+    "apellido_paterno": "Garcia",
+    "apellido_materno": "Garcia",
+    "rfc": "asdfghjklo124",
+    "curp": "asdfghjkloqwert124"
+} 
+
+
+
+###
+GET {{api}}/3
+
+###
+DELETE  {{api}}/7
+
+###
+
+PUT  {{api}}/5
+Content-Type: application/json
+
+{
+    "nombre": "David",
+    "apellido_paterno": "Osornio",
+    "apellido_materno": "Garcia",
+    "rfc": "OOGD980325F75",
+    "curp": "OOGD980325HMNSRV05"
+}  
