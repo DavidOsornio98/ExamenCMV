@@ -15,9 +15,7 @@ INSERT INTO TBL_CMV_CLIENTE (nombre, apellido_paterno, apellido_materno, rfc, cu
 VALUES (@nombre, @apellido_paterno, @apellido_materno, @rfc, @curp, @fecha_alta)
 END
 
-exec SP_insertar_cliente 'David', 'Osornio', 'Garcia', 'OOGD980325F75', 'OOGD980325HMNSRV05', '2016-10-23 20:44:11.500'
 
----------------------------------------------------------------------
 
 CREATE PROC SP_consultar_clientes
 
@@ -29,9 +27,7 @@ SELECT * FROM TBL_CMV_CLIENTE
 END
 
 
-exec SP_consultar_clientes
 
---------------------------------------------------------------------------
 CREATE PROC SP_actualizar_info_cliente
 (
 @nombre varchar(30),
@@ -52,10 +48,7 @@ WHERE id_cliente = @id_cliente
 
 END
 
-exec SP_actualizar_info_cliente 'Alexandra', 'Vieyra', 'Xicohtencatl', 'asdfghjklo123',
-'asdfghjklzxcvbn147', 4
 
------------------------------------------------------------------
 
 CREATE PROC SP_eliminar_cliente
 (
@@ -66,13 +59,12 @@ AS
 BEGIN
 
 DELETE FROM TBL_CMV_CLIENTE WHERE id_cliente = @id_cliente
+DELETE FROM TBL_CMV_CLIENTE_CUENTA WHERE id_cliente = @id_cliente
 
 END
 
 
-exec SP_eliminar_cliente 3
 
--------------------------------------------------------------
 
 CREATE PROC SP_consultar_cuenta_cliente
 (
@@ -82,12 +74,9 @@ CREATE PROC SP_consultar_cuenta_cliente
 AS
 BEGIN
 
-SELECT nombre, apellido_materno, apellido_materno, rfc, curp, nombre_cuenta FROM TBL_CMV_CLIENTE
+SELECT nombre, apellido_paterno, apellido_materno, rfc, curp, nombre_cuenta FROM TBL_CMV_CLIENTE
 INNER JOIN TBL_CMV_CLIENTE_CUENTA ON TBL_CMV_CLIENTE.id_cliente = TBL_CMV_CLIENTE_CUENTA.id_cliente
 INNER JOIN CAT_CMV_TIPO_CUENTA ON CAT_CMV_TIPO_CUENTA.id_cuenta = TBL_CMV_CLIENTE_CUENTA.id_cuenta
 WHERE TBL_CMV_CLIENTE.id_cliente = @id_cliente
 
 END
-
-
-exec SP_consultar_cuenta_cliente 2
