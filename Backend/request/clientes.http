@@ -20,10 +20,10 @@ Content-Type: application/json
 
 
 ###
-GET {{api}}/3
+GET {{api}}/1
 
 ###
-DELETE  {{api}}/7
+DELETE  {{api}}/1
 
 ###
 
