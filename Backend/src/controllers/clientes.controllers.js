@@ -1,5 +1,7 @@
 import { getConnection, sql } from '../database/connection'
 
+// Logica que permite obtener todos los clientes de la bd
+
 export const getClients = async (req, res) => {
     const query = 'exec SP_consultar_clientes'
     try {
@@ -8,12 +10,15 @@ export const getClients = async (req, res) => {
         .request()
         .query(query)
         console.log(clientes);
+        res.header({"Access-Control-Allow-Origin":   "*"});
         res.json(clientes.recordset)
     } catch (error) {
         console.log(error);
     }
 
 }
+
+// Logica que permite obtener crear un nuevo cliente
 
 export const newClient = async (req, res) => {
     let today = new Date();
@@ -36,6 +41,11 @@ export const newClient = async (req, res) => {
         .input('fecha_alta', sql.VarChar, dateTime)
         .query(query)
         console.log(nuevoCliente);
+        res.header("Access-Control-Allow-Origin","*");
+        res.header("Access-Control-Allow-Methods","*");
+        res.header("Access-Control-Allow-Credentials","true");
+        res.header("Access-Control-Allow-Headers","Content-Type.Access-Token,adminid");
+        res.header("Access-Control-Expose-Headers","*");
         res.json({
             nombre,
             apellido_paterno,
@@ -50,6 +60,7 @@ export const newClient = async (req, res) => {
 
 }
 
+// Logica que permite obtener un cliente por Id Junto con la informacion de su cuenta
 
 export const getClientByID = async (req, res) => {
     const query = 'exec SP_consultar_cuenta_cliente @id_cliente'
@@ -61,12 +72,16 @@ export const getClientByID = async (req, res) => {
         .input('id_cliente', sql.Int, id_cliente)
         .query(query)
         console.log(clienteId);
-        res.json(clienteId.recordset)
+        res.header("Access-Control-Allow-Origin", "*");
+        res.json(clienteId.recordset[0])
     } catch (error) {
         console.log(error);
     }
 
 }
+
+// Logica que permite eliminar a un usuario por su Id, si el cliente tiene cuenta tambien se elimina
+// su cuenta
 
 export const deleteClientByID = async (req, res) => {
     const query = 'exec SP_eliminar_cliente @id_cliente'
@@ -78,6 +93,7 @@ export const deleteClientByID = async (req, res) => {
         .input('id_cliente', sql.Int, id_cliente)
         .query(query)
         console.log(deleteClienteId);
+        res.header("Access-Control-Allow-Origin", "*");
         res.sendStatus(204)
     } catch (error) {
         console.log(error);
@@ -85,7 +101,7 @@ export const deleteClientByID = async (req, res) => {
 
 }
 
-
+// Logica que permite actualizar la informacion de un cliente
 
 export const updateClientByID = async (req, res) => {
     let today = new Date();

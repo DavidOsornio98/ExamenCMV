@@ -1,5 +1,7 @@
 import sql from 'mssql'
 
+// Variables de configuracion de la BD
+
 const dbConfig = {
     user: 'sa',
     password: 'Abcde1',
@@ -13,6 +15,7 @@ const dbConfig = {
 }
 
 
+// Se exporta funcion que genera la conexion a la bd
 
 export const getConnection = async () =>{
     try {
