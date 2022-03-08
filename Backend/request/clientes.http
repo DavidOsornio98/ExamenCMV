@@ -10,11 +10,11 @@ POST {{api}}
 Content-Type: application/json
 
 {
-    "nombre": "Miguel",
-    "apellido_paterno": "Garcia",
-    "apellido_materno": "Garcia",
-    "rfc": "asdfghjklo124",
-    "curp": "asdfghjkloqwert124"
+    "nombre": "dfgfdg",
+    "apellido_paterno": "gjy",
+    "apellido_materno": "yjuy",
+    "rfc": "123456",
+    "curp": "14785"
 } 
 
 
@@ -23,11 +23,11 @@ Content-Type: application/json
 GET {{api}}/1
 
 ###
-DELETE  {{api}}/1
+DELETE  {{api}}/4
 
 ###
 
-PUT  {{api}}/5
+PUT  {{api}}/1
 Content-Type: application/json
 
 {

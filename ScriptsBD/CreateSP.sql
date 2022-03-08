@@ -35,6 +35,7 @@ CREATE PROC SP_actualizar_info_cliente
 @apellido_materno varchar(30),
 @rfc varchar(13),
 @curp varchar(18), 
+@fecha_ultimo_movimiento datetime,
 @id_cliente int
 )
 
@@ -45,6 +46,9 @@ UPDATE TBL_CMV_CLIENTE
 SET nombre = @nombre, apellido_paterno = @apellido_paterno, apellido_materno = @apellido_materno,
 rfc = @rfc, curp = @curp
 WHERE id_cliente = @id_cliente
+UPDATE TBL_CMV_CLIENTE_CUENTA
+SET fecha_ultimo_movimiento = @fecha_ultimo_movimiento
+WHERE  id_cliente = @id_cliente
 
 END
 
@@ -59,7 +63,6 @@ AS
 BEGIN
 
 DELETE FROM TBL_CMV_CLIENTE WHERE id_cliente = @id_cliente
-DELETE FROM TBL_CMV_CLIENTE_CUENTA WHERE id_cliente = @id_cliente
 
 END
 

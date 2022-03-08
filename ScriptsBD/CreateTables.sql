@@ -54,6 +54,14 @@ CREATE TABLE examenCmv.dbo.TBL_CMV_CLIENTE_CUENTA(
     saldo_actual money NOT NULL,
     fecha_contratacion datetime NOT NULL,
     fecha_ultimo_movimiento datetime NOT NULL,
+    CONSTRAINT FK_id_cliente FOREIGN KEY (id_cliente)
+    REFERENCES TBL_CMV_CLIENTE (id_cliente)
+    ON UPDATE cascade
+    ON DELETE cascade,
+    CONSTRAINT FK_id_cuenta FOREIGN KEY (id_cuenta)
+    REFERENCES CAT_CMV_TIPO_CUENTA (id_cuenta)
+    ON UPDATE cascade
+    ON DELETE cascade,
 )
 
 END
