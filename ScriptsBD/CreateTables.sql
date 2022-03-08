@@ -11,7 +11,7 @@
     GO
 
 
--- Se verifica que no haya una tabla creada para clientes, de lo contrario la elemina y se crea 
+-- Se verifica que no haya una tabla creada para clientes, de lo contrario  se crea 
 
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='examenCmv.dbo.TBL_CMV_CLIENTE' and xtype='U')
 BEGIN
@@ -28,7 +28,7 @@ CREATE TABLE examenCmv.dbo.TBL_CMV_CLIENTE(
 END
 
 
--- Se verifica que no haya una tabla creada para tipos de cuenta, de lo contrario la elemina y se crea
+-- Se verifica que no haya una tabla creada para tipos de cuenta de lo contrario se crea
 
 
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='examenCmv.dbo.CAT_CMV_TIPO_CUENTA' and xtype='U')
@@ -41,7 +41,7 @@ CREATE TABLE examenCmv.dbo.CAT_CMV_TIPO_CUENTA(
 
 END
 
--- Se verifica que no haya una tabla creada para cliente cuenta, de lo contrario la elemina y se crea
+-- Se verifica que no haya una tabla creada para cliente cuenta, de lo contrario se crea
 
 
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='examenCmv.dbo.TBL_CMV_CLIENTE_CUENTA' and xtype='U')

@@ -1,3 +1,5 @@
+-- Se crea el SP que permite ingresar solo al cliente a la bd
+
 CREATE PROC SP_insertar_cliente
 (
 @nombre varchar(30),
@@ -16,6 +18,7 @@ VALUES (@nombre, @apellido_paterno, @apellido_materno, @rfc, @curp, @fecha_alta)
 END
 
 
+-- Se crea SP que permite consultar a todos los clientes
 
 CREATE PROC SP_consultar_clientes
 
@@ -26,7 +29,7 @@ SELECT * FROM TBL_CMV_CLIENTE
 
 END
 
-
+--Se crea SP que permite actualizar la informacion de un cliente
 
 CREATE PROC SP_actualizar_info_cliente
 (
@@ -52,7 +55,7 @@ WHERE  id_cliente = @id_cliente
 
 END
 
-
+-- Se crea SP que permite eliminar un cliente
 
 CREATE PROC SP_eliminar_cliente
 (
@@ -67,7 +70,7 @@ DELETE FROM TBL_CMV_CLIENTE WHERE id_cliente = @id_cliente
 END
 
 
-
+-- Se crea sp para consultar detalles de cuenta del cliente
 
 CREATE PROC SP_consultar_cuenta_cliente
 (
@@ -77,7 +80,9 @@ CREATE PROC SP_consultar_cuenta_cliente
 AS
 BEGIN
 
-SELECT nombre, apellido_paterno, apellido_materno, rfc, curp, nombre_cuenta FROM TBL_CMV_CLIENTE
+SELECT nombre, apellido_paterno, apellido_materno, rfc, curp,
+fecha_alta, nombre_cuenta, saldo_actual, fecha_contratacion, fecha_ultimo_movimiento
+FROM TBL_CMV_CLIENTE
 INNER JOIN TBL_CMV_CLIENTE_CUENTA ON TBL_CMV_CLIENTE.id_cliente = TBL_CMV_CLIENTE_CUENTA.id_cliente
 INNER JOIN CAT_CMV_TIPO_CUENTA ON CAT_CMV_TIPO_CUENTA.id_cuenta = TBL_CMV_CLIENTE_CUENTA.id_cuenta
 WHERE TBL_CMV_CLIENTE.id_cliente = @id_cliente
