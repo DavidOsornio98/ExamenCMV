@@ -1,4 +1,4 @@
-# examen
+# examen-vue2
 
 ## Project setup
 ```
